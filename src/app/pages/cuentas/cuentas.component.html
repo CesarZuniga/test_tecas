@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">Alta Cuentas</h5>
+      </div>
+      <div class="card-body">
+        <form #formulario="ngForm">
+          <div class="row">
+            <div class="col-md-6 px-1">
+              <div class="form-group">
+                <label>Cliente</label>
+                <ng-select class="form-control" [items]="clientes" (change)="obtenCuentas()" required bindValue="clienteId" bindLabel="nombre"
+                [(ngModel)]="item.clienteId" name="cliente" #cliente="ngModel">
+              </ng-select>
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Número de cuenta</label>
+                <input type="text" [(ngModel)]="item.numeroCuenta" name="numeroCuenta"class="form-control" placeholder="No. Cuenta">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 px-1">
+              <div class="form-group">
+                <label>Saldo actual *</label>
+                <input type="number" [(ngModel)]="item.saldoActual" name="saldoActual" class="form-control" placeholder="Saldo actual" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" (click)="creaCuenta()" [disabled]="formulario.invalid"  class="btn btn-primary btn-round">Guardar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"> Cuentas</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                Nombre Completo
+              </th>
+              <th>
+                Número de cuenta
+              </th>
+              <th>
+                Saldo actual
+              </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let c of cuentas">
+                <td>
+                  {{c.nombre}}
+                </td>
+                <td>
+                  {{c.numeroCuenta}}
+                </td>
+                <td>
+                  {{c.saldoActual | currency}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
